@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+  xmlns:xsi="http://www.w3.org/2001/X-2001/XMLSchema-instance"
+  xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+                      https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+  version="6.0">
+
+    <display-name>Project-4 Enterprise System</display-name>
+
+    <servlet>
+        <servlet-name>AuthenticationServlet</servlet-name>
+        <servlet-class>AuthenticationServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AuthenticationServlet</servlet-name>
+        <url-pattern>/authenticate</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>RootUserServlet</servlet-name>
+        <servlet-class>RootUserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RootUserServlet</servlet-name>
+        <url-pattern>/RootUserApp</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ClientUserServlet</servlet-name>
+        <servlet-class>ClientUserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ClientUserServlet</servlet-name>
+        <url-pattern>/ClientUserApp</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SuppliersInsertServlet</servlet-name>
+        <servlet-class>SuppliersInsertServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SuppliersInsertServlet</servlet-name>
+        <url-pattern>/AddSupplierRecord</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AccountantUserServlet</servlet-name>
+        <servlet-class>AccountantUserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AccountantUserServlet</servlet-name>
+        <url-pattern>/AccountantUserApp</url-pattern>
+    </servlet-mapping>
+
+    <welcome-file-list>
+        <welcome-file>authenticate.html</welcome-file>
+    </welcome-file-list>
+
+</web-app>
