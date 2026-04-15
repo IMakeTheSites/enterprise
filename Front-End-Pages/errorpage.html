@@ -1,0 +1,62 @@
+<!-- Name: Mark Wlodawski
+ Course: CNT 4714 – Spring 2026 – Project Four
+ Assignment title: A Three-Tier Distributed Web-Based Application
+ Date: April 27, 2026
+-->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CNT 4714 - Access Denied</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        background-color: #f0f0f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .error-container {
+        background: white;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        max-width: 500px;
+      }
+      h1 {
+        color: #d9534f;
+        margin-bottom: 10px;
+      }
+      h2 {
+        color: #333;
+        margin-bottom: 25px;
+        font-weight: normal;
+      }
+      a {
+        display: inline-block;
+        background-color: #0275d8;
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background 0.3s;
+      }
+      a:hover {
+        background-color: #01447e;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="error-container">
+      <h1>Access Denied</h1>
+      <h2>Username and/or Password Not Recognized.</h2>
+      <p>Access to the system is denied. Please try again later.</p>
+      <br />
+      <a href="../authenticate.html">Return to Login Page</a>
+    </div>
+  </body>
+</html>
