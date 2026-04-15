@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Name: Mark Wlodawski
+ Course: CNT 4714 – Spring 2026 – Project Four
+ Assignment title: A Three-Tier Distributed Web-Based Application
+ Date: April 27, 2026
+-->
+
 <web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
   xmlns:xsi="http://www.w3.org/2001/X-2001/XMLSchema-instance"
   xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee

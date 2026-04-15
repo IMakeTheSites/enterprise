@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Name: Mark Wlodawski
+ Course: CNT 4714 – Spring 2026 – Project Four
+ Assignment title: A Three-Tier Distributed Web-Based Application
+ Date: April 27, 2026
+-->
+
+<project name="Project-4" default="compile" basedir=".">
+
+    <property name="src.dir" value="src"/>
+    <property name="web.dir" value="."/>
+    <property name="build.dir" value="WEB-INF/classes"/>
+    <property name="lib.dir" value="WEB-INF/lib"/>
+    
+    <property name="tomcat.lib" value="/opt/homebrew/opt/tomcat/libexec/lib/servlet-api.jar"/>
+
+    <path id="classpath">
+        <fileset dir="${lib.dir}" includes="**/*.jar"/>
+        <pathelement location="${tomcat.lib}"/>
+    </path>
+
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+        <mkdir dir="${build.dir}"/>
+    </target>
+
+    <target name="compile" depends="clean">
+        <echo message="Compiling Java Source Files..."/>
+        <javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false">
+            <classpath refid="classpath"/>
+        </javac>
+    </target>
+
+    <target name="war" depends="compile">
+        <echo message="Creating Project-4.war file..."/>
+        <war destfile="Project-4.war" webxml="WEB-INF/web.xml">
+            <fileset dir="${web.dir}">
+                <include name="*.html"/>
+                <include name="Front-End-Pages/**"/>
+                <include name="WEB-INF/**"/>
+            </fileset>
+        </war>
+    </target>
+
+</project>
