@@ -27,7 +27,11 @@ public class ClientUserServlet extends HttpServlet {
 
         // Load Client specific properties (client.properties)
         Properties props = new Properties();
-        try (InputStream is = getServletContext().getResourceAsStream("/WEB-INF/conf/" + propFile)) {
+        String path = "/WEB-INF/conf/" + propFile.trim();
+        try (InputStream is = getServletContext().getResourceAsStream(path)) {
+            if (is == null) {
+                throw new Exception("File not found at: " + path);
+            }
             props.load(is);
             Class.forName("com.mysql.cj.jdbc.Driver");
             

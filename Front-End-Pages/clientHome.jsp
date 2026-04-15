@@ -39,7 +39,7 @@
     <div class="main-card">
         <p>Enter a <strong>Supplier Name</strong> or <strong>Part Number</strong> to retrieve shipment details:</p>
         
-        <form action="../ClientUserServlet" method="POST" class="search-box">
+        <form action="${pageContext.request.contextPath}/ClientUserApp" method="POST" class="search-box">
             <input type="text" name="searchQuery" placeholder="e.g., Smith or P3" value="${searchQuery}">
             
             <div class="button-group">
@@ -68,7 +68,7 @@
         </div>
 
         <div style="margin-top: 30px; text-align: center;">
-            <a href="../authenticate.html" style="text-decoration: none; color: #3498db; font-size: 0.9rem;">&larr; Log out and return to login</a>
+            <a href="${pageContext.request.contextPath}/authenticate.html" style="text-decoration: none; color: #3498db; font-size: 0.9rem;">&larr; Log out and return to login</a>
         </div>
     </div>
 
