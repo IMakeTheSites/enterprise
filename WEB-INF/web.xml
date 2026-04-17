@@ -28,7 +28,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>RootUserServlet</servlet-name>
-        <url-pattern>/RootUserApp</url-pattern>
+        <url-pattern>/RootUserServlet</url-pattern>
     </servlet-mapping>
 
     <servlet>

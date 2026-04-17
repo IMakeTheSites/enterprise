@@ -40,8 +40,7 @@
         <p>Enter a <strong>Supplier Name</strong> or <strong>Part Number</strong> to retrieve shipment details:</p>
         
         <form action="${pageContext.request.contextPath}/ClientUserApp" method="POST" class="search-box">
-            <input type="text" name="searchQuery" placeholder="e.g., Smith or P3" value="${searchQuery}">
-            
+            <textarea name="searchQuery" rows="10" placeholder="Enter SQL here...">${searchQuery}</textarea>
             <div class="button-group">
                 <input type="submit" value="Search Database">
                 <input type="reset" value="Clear">

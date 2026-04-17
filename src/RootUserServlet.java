@@ -23,11 +23,11 @@ public class RootUserServlet extends HttpServlet {
         sql = sql.trim();
         
         HttpSession session = request.getSession();
-        String propFile = (String) session.getAttribute("userProperties");
-
+        
         Properties props = new Properties();
         String message = "";
         String tableHTML = "";
+        String propFile = "root.properties";
 
         try (InputStream is = getServletContext().getResourceAsStream("/WEB-INF/conf/" + propFile)) {
             props.load(is);

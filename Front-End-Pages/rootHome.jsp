@@ -32,7 +32,7 @@ Name: Mark Wlodawski
     <div class="form-container">
         <p>Enter your SQL statement in the box below and click the button to execute.</p>
         
-        <form action="../RootUserServlet" method="POST">
+        <form action="${pageContext.request.contextPath}/RootUserServlet" method="POST">
             <textarea name="sqlCommand" rows="10" placeholder="Enter SQL here...">${sqlCommand}</textarea>
             <br><br>
             <input type="submit" value="Execute Command">
