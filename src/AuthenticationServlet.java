@@ -43,6 +43,8 @@ public class AuthenticationServlet extends HttpServlet {
                         String jspPage;
                         if (role.equals("theaccountant")) {
                             jspPage = "accountantHome.jsp"; 
+                        } else if (role.equals("dataentry")) { 
+                            jspPage = "dataEntryHome.jsp"; 
                         } else {
                             jspPage = role + "Home.jsp"; 
                         }
