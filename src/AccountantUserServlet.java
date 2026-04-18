@@ -39,7 +39,7 @@ public class AccountantUserServlet extends HttpServlet {
                 CallableStatement cstmt = null;
 
                 // Determine which stored procedure to call based on button click
-                if ("get_max_status".equals(selection)) {
+               if ("get_max_status".equals(selection)) {
                     cstmt = conn.prepareCall("{call get_maximum_status_of_all_suppliers()}");
                 } else if ("get_sum_quantities".equals(selection)) {
                     cstmt = conn.prepareCall("{call get_sum_of_all_quantities()}");
@@ -47,6 +47,8 @@ public class AccountantUserServlet extends HttpServlet {
                     cstmt = conn.prepareCall("{call get_total_number_of_suppliers()}");
                 } else if ("get_jobs_count".equals(selection)) {
                     cstmt = conn.prepareCall("{call get_total_number_of_jobs()}");
+                } else if ("get_all_suppliers_list".equals(selection)) {
+                    cstmt = conn.prepareCall("{call get_all_suppliers_list()}"); // New call
                 }
 
                 if (cstmt != null) {
@@ -70,7 +72,7 @@ public class AccountantUserServlet extends HttpServlet {
         }
 
         // Forward back to the accountant home page
-        request.getRequestDispatcher("Front-End-Pages/accountantHome.jsp").forward(request, response);
+        request.getRequestDispatcher("/Front-End-Pages/accountantHome.jsp").forward(request, response);
     }
 
     // Helper method to generate HTML table from ResultSet

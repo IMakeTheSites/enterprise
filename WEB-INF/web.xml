@@ -28,7 +28,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>RootUserServlet</servlet-name>
-        <url-pattern>/RootUserApp</url-pattern>
+        <url-pattern>/RootUserServlet</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -56,6 +56,33 @@
     <servlet-mapping>
         <servlet-name>AccountantUserServlet</servlet-name>
         <url-pattern>/AccountantUserApp</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+    <servlet-name>PartsInsertServlet</servlet-name>
+    <servlet-class>PartsInsertServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PartsInsertServlet</servlet-name>
+        <url-pattern>/PartsInsertServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+    <servlet-name>JobsInsertServlet</servlet-name>
+    <servlet-class>JobsInsertServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>JobsInsertServlet</servlet-name>
+        <url-pattern>/JobsInsertServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+    <servlet-name>ShipmentsInsertServlet</servlet-name>
+    <servlet-class>ShipmentsInsertServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShipmentsInsertServlet</servlet-name>
+        <url-pattern>/ShipmentsInsertServlet</url-pattern>
     </servlet-mapping>
 
     <welcome-file-list>

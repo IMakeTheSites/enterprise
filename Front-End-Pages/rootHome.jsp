@@ -22,6 +22,10 @@ Name: Mark Wlodawski
         th { background-color: #4CAF50; color: white; }
         .message { color: green; font-weight: bold; margin-top: 10px; }
         .error { color: red; font-weight: bold; margin-top: 10px; }
+        .button-group { margin-top: 15px; display: flex; gap: 10px; }
+        .btn-execute { background-color: #2e7d32; color: white; padding: 10px; border: none; border-radius: 4px; cursor: pointer; }
+        .btn-reset { background-color: #f44336; color: white; padding: 10px; border: none; border-radius: 4px; cursor: pointer; }
+        .btn-clear { background-color: #ff9800; color: white; padding: 10px; border: none; border-radius: 4px; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -32,12 +36,19 @@ Name: Mark Wlodawski
     <div class="form-container">
         <p>Enter your SQL statement in the box below and click the button to execute.</p>
         
-        <form action="../RootUserServlet" method="POST">
+        <form action="${pageContext.request.contextPath}/RootUserServlet" method="POST">
             <textarea name="sqlCommand" rows="10" placeholder="Enter SQL here...">${sqlCommand}</textarea>
             <br><br>
-            <input type="submit" value="Execute Command">
-            <input type="reset" value="Reset Form">
+
+        <div class="button-group">
+            <input type="submit" value="Execute Command" class="btn-execute">
+            <input type="reset" value="Reset Form" class="btn-reset">
+            <input type="button" value="Clear Results" class="btn-clear" onclick="clearResults()">
+        </div>
         </form>
+         <div style="text-align: center; margin-top: 20px;">
+            <a href="${pageContext.request.contextPath}/authenticate.html">Logout</a>
+        </div>
 
         <%-- This section displays the messages from the Servlet --%>
         <div class="message">
@@ -59,6 +70,16 @@ Name: Mark Wlodawski
             <%= request.getAttribute("table") %>
         <% } %>
     </div>
-
+    <script>
+        function clearResults() {
+            // Manually clear the message, error, and table divs
+            document.querySelector('.message').innerHTML = '';
+            document.querySelector('.error').innerHTML = '';
+            const tableDiv = document.getElementById('resultTable');
+            if (tableDiv) {
+                tableDiv.innerHTML = '';
+            }        
+        }
+    </script>
 </body>
 </html>

@@ -11,23 +11,30 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
-@WebServlet("/ClientUserServlet")
+@WebServlet("/ClientUserApp")
 public class ClientUserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
         
+        // Search term from the JSP
         String searchQuery = request.getParameter("searchQuery");
-        HttpSession session = request.getSession();
-        String propFile = (String) session.getAttribute("userProperties");
+
+        // Hardcode the properties file to avoid "inStream is null" errors
+        String propFile = "client.properties";
         
         String tableHTML = "";
         String message = "";
 
-        // Load Client specific properties (client.properties)
         Properties props = new Properties();
-        try (InputStream is = getServletContext().getResourceAsStream("/WEB-INF/conf/" + propFile)) {
+        String path = "/WEB-INF/conf/" + propFile;        
+
+        // Load Client specific properties
+        try (InputStream is = getServletContext().getResourceAsStream(path)) {
+            if (is == null) {
+                throw new Exception("File not found at: " + path);
+            }
             props.load(is);
             Class.forName("com.mysql.cj.jdbc.Driver");
             
@@ -36,20 +43,24 @@ public class ClientUserServlet extends HttpServlet {
                     props.getProperty("user"), 
                     props.getProperty("password"))) {
 
-                // We use a PreparedStatement to allow for flexible searching
-                // This example searches for shipments by either Supplier Number or Part Number
-                String sql = "SELECT * FROM shipments WHERE snum = ? OR pnum = ?";
-                PreparedStatement pstmt = conn.prepareStatement(sql);
-                pstmt.setString(1, searchQuery);
-                pstmt.setString(2, searchQuery);
-                
-                ResultSet rs = pstmt.executeQuery();
-                
-                // If the ResultSet has data, build the table
-                if (rs.isBeforeFirst()) {
-                    tableHTML = getHTMLTable(rs);
+                // Get the SQL
+                String sql = searchQuery.trim();
+
+                // Statement
+                Statement stmt = conn.createStatement();
+
+                // Check whether it's SELECT or INSERT/UPDATE
+                if (sql.toLowerCase().startsWith("select")) {
+                    ResultSet rs = stmt.executeQuery(sql);
+                    if (rs.isBeforeFirst()) {
+                        tableHTML = getHTMLTable(rs);
+                    } else {
+                        message = "No records found.";
+                    }
                 } else {
-                    message = "No records found matching: " + searchQuery;
+                    // Non-select commands
+                    int res = stmt.executeUpdate(sql);
+                    message = "Command executed successfully. " + res + " rows affected.";
                 }
 
                 request.setAttribute("table", tableHTML);
@@ -61,11 +72,11 @@ public class ClientUserServlet extends HttpServlet {
             request.setAttribute("error", "Database Error: " + e.getMessage());
         }
 
-        // Forward back to the client home page
+        // Back to the client home page
         request.getRequestDispatcher("Front-End-Pages/clientHome.jsp").forward(request, response);
     }
 
-    // Standard helper method to generate HTML table
+    // Generate HTML table
     private String getHTMLTable(ResultSet rs) throws SQLException {
         ResultSetMetaData rsmd = rs.getMetaData();
         int columnCount = rsmd.getColumnCount();
